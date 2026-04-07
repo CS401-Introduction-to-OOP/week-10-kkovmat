@@ -42,7 +42,7 @@ class Party : IEnumerable<Character>
         return GetEnumerator();
     }
 
-    public IEnumerator<Character> GetActiveCharacter()
+    public IEnumerator<Character> ActiveCharacters()
     {
         foreach(var ch in characters)
         {
@@ -62,7 +62,28 @@ class Party : IEnumerable<Character>
             {
                 yield return ch;    
             }
-            
         }
     }
+
+    public List<Character> GetByLevel(int level)
+    {
+        return characters.Where(ch => ch.Level >= level).ToList();
+    }
+
+    public List<string> GetNames()
+    {
+        return characters.Select(ch => ch.Name).ToList();
+    }
+
+    public int GetRoleNumber(string role)
+    {
+        return characters.Count(ch => ch.Role == role);
+    }
+
+    public Dictionary<string, List<Character>> GroupByRole()
+    {
+        return characters.GroupBy(ch => ch.Role).ToDictionary(k => k.Key, v => v.ToList());
+    }
+
+
 }

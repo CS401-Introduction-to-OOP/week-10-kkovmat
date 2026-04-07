@@ -6,7 +6,7 @@ class Program
         Console.WriteLine("Character test");
 
         Character character1 = new Character("name1", "warior");
-        Character character2 = new Character("name2", "qwerty");
+        Character character2 = new Character("name2", "qwerty", hp:5);
         Character character3 = new Character("name3", "dragon");
         character1.ActivateCharacter();
         Party party1 = new Party();
@@ -43,5 +43,11 @@ class Program
         {
             Console.WriteLine(ev);
         }
+
+        foreach(var ev in events.GetByType("hp"))
+        {
+            Console.WriteLine(ev);
+        }
+
     }
 }
