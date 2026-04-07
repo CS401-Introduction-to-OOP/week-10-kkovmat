@@ -41,4 +41,28 @@ class Party : IEnumerable<Character>
     {
         return GetEnumerator();
     }
+
+    public IEnumerator<Character> GetActiveCharacter()
+    {
+        foreach(var ch in characters)
+        {
+            if (ch.Status == "active")
+            {
+                yield return ch;    
+            }
+            
+        }
+    }
+
+    public IEnumerator<Character> GetByHP(int hp)
+    {
+        foreach(var ch in characters)
+        {
+            if (ch.HP < hp)
+            {
+                yield return ch;    
+            }
+            
+        }
+    }
 }

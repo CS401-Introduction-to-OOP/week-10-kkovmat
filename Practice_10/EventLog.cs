@@ -39,4 +39,28 @@ class EventLog : IEnumerable<Event>
     {
         return GetEnumerator();
     }
+
+    public IEnumerator<Event> GetByType(string type)
+    {
+        foreach(var ev in events)
+        {
+            if (ev.Type == type)
+            {
+                yield return ev;    
+            }
+            
+        }
+    }
+
+    public IEnumerator<Event> GetLastEvents(int number)
+    {
+        
+        foreach(var ev in EventChronology())
+        {
+            yield return ev;
+            number--;
+            if (number <= 0) break;
+        }
+    }
+    
 }
